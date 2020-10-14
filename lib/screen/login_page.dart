@@ -1,15 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:soldier_realtime_phone_return/data/find_pw.dart';
-import 'package:soldier_realtime_phone_return/data/join_page.dart';
+import 'file:///C:/Users/m/AndroidStudioProjects/soldier_realtime_phone_return/lib/screen/find_pw.dart';
+import 'file:///C:/Users/m/AndroidStudioProjects/soldier_realtime_phone_return/lib/screen/join_page.dart';
 
 class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController idController = TextEditingController();
+  final TextEditingController eMailController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
-
-  void _validate() {
-    if (formKey.currentState.validate()) print("success");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +52,16 @@ class LoginPage extends StatelessWidget {
     );
   }
 
+  void _login(BuildContext context) async {
+    final UserCredential result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: eMailController.text, password: pwController.text);
+    final User user = result.user;
+
+    if(user == null){
+      final _snackBar = SnackBar(content: Text("try"),);
+      Scaffold.of(context).showSnackBar(_snackBar);
+    }
+  }
+
   Widget loginButton(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Positioned(
@@ -68,7 +75,9 @@ class LoginPage extends StatelessWidget {
         ),
         color: Colors.lightBlue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-        onPressed: _validate,
+        onPressed: (){
+          if (formKey.currentState.validate()) _login(context);
+        },
       ),
     );
   }
@@ -91,7 +100,7 @@ class LoginPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       TextFormField(
-                        controller: idController,
+                        controller: eMailController,
                         decoration: InputDecoration(
                             icon: Icon(Icons.account_circle), labelText: "이메일"),
                         validator: (value) =>
@@ -117,3 +126,4 @@ class LoginPage extends StatelessWidget {
         ));
   }
 }
+

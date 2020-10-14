@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "923496510243",
+    "firebase_url": "https://solider-real-time-phone-return.firebaseio.com",
+    "project_id": "solider-real-time-phone-return",
+    "storage_bucket": "solider-real-time-phone-return.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923496510243:android:d6578a791740695a395296",
+        "android_client_info": {
+          "package_name": "com.example.soldier_realtime_phone_return"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923496510243-b83ubgl2kbbpv9lvi546lsg8u2dd4j9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl_5-LVW6dGJ9fFFhPW1XXFkNNpGwWbcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923496510243-b83ubgl2kbbpv9lvi546lsg8u2dd4j9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
