@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'file:///C:/Users/m/AndroidStudioProjects/soldier_realtime_phone_return/lib/screen/find_pw.dart';
 import 'file:///C:/Users/m/AndroidStudioProjects/soldier_realtime_phone_return/lib/screen/join_page.dart';
+import 'package:soldier_realtime_phone_return/screen/firstLaunchScreen.dart';
 
 class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -76,7 +77,7 @@ class LoginPage extends StatelessWidget {
         color: Colors.lightBlue,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         onPressed: (){
-          if (formKey.currentState.validate()) _login(context);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => FirstLaunchAppPage()));
         },
       ),
     );
@@ -117,7 +118,7 @@ class LoginPage extends StatelessWidget {
                       Text(""),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => passwordFindPage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => PasswordFindPage()));
                         },
                         child: Text("비밀번호가 기억나지 않습니까?"),
                       ),

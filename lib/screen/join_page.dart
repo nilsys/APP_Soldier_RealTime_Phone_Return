@@ -1,19 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:soldier_realtime_phone_return/screen/login_page.dart';
 
 class JoinPage extends StatelessWidget {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController eMailController = TextEditingController();
-  final TextEditingController pwController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final eMailController = TextEditingController();
+  final pwController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery
+        .of(context)
+        .size;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("회원가입"),
+        title: Text("개인정보"),
       ),
       body: Stack(
         alignment: Alignment.center,
@@ -25,8 +26,8 @@ class JoinPage extends StatelessWidget {
               //container
               Stack(
                 children: <Widget>[
-                  loginForm(size),
-                  loginButton(context),
+                  joinForm(size),
+                  joinButton(context),
                 ],
               ),
               Container(
@@ -39,21 +40,10 @@ class JoinPage extends StatelessWidget {
     );
   }
 
-  void _register(BuildContext context) async {
-    final UserCredential result = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: eMailController.text, password: pwController.text);
-    final User user = result.user;
 
-    if(user == null){
-      final _snackBar = SnackBar(content: Text("try"),);
-      Scaffold.of(context).showSnackBar(_snackBar);
-    }
-
-    // Navigator.push(context, MaterialPageRoute(builder: (context)=>ListPage(email: user.email)));
-    // 조인 후 바로 리스트 창으로 이동
-  }
-
-  Widget loginButton(BuildContext context) {
+  Widget joinButton(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return Positioned(
       left: size.width * 0.15,
       right: size.width * 0.15,
@@ -64,15 +54,16 @@ class JoinPage extends StatelessWidget {
             style: TextStyle(fontSize: 22, color: Colors.white),
           ),
           color: Colors.lightBlue,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-          onPressed: (){
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25)),
+          onPressed: () {
             if (formKey.currentState.validate()) _register(context);
           }
       ),
     );
   }
 
-  Widget loginForm(Size size) {
+  Widget joinForm(Size size) {
     return Padding(
         padding: EdgeInsets.all(size.width * 0.05),
         child: Card(
@@ -106,5 +97,17 @@ class JoinPage extends StatelessWidget {
                     ],
                   ))),
         ));
+  }
+
+  void _register(BuildContext context) async {
+    UserCredential result = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+        email: eMailController.text.trim(), password: pwController.text.trim());
+    User user = result.user;
+
+    if (user == null) {
+      final _snackBar = SnackBar(content: Text("try"),);
+      Scaffold.of(context).showSnackBar(_snackBar);
+    }
   }
 }

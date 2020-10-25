@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soldier_realtime_phone_return/screen/login_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class passwordFindPage extends StatelessWidget {
+class PasswordFindPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
